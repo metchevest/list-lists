@@ -18,7 +18,10 @@ defmodule Lists.Accounts do
 
   """
   def list_users do
-    Repo.all(User)
+    User
+    |> Repo.all()
+    |> Repo.preload([:lists, :categories])
+    |> Repo.preload(lists: :items)
   end
 
   @doc """
@@ -101,4 +104,18 @@ defmodule Lists.Accounts do
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
   end
+
+  @doc """
+    Add a list to a user
+  """
+
+  def add_list_to_user(user, list) do
+    user
+    |> Repo.preload(:lists)
+    |> Ecto.Changeset.change()
+    |> Ecto.Changeset.put_assoc(:lists, [list])
+    |> Repo.update!()
+
+  end
+
 end

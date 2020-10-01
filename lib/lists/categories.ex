@@ -18,7 +18,9 @@ defmodule Lists.Categories do
 
   """
   def list_categories do
-    Repo.all(Category)
+    Category
+    |> Repo.all()
+    |> Repo.preload(:lists)
   end
 
   @doc """

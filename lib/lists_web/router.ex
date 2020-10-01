@@ -17,6 +17,9 @@ defmodule ListsWeb.Router do
     pipe_through :api
 
     resources "/users", UserController
+    resources "/lists", ListController
+    resources "/items", ItemController
+    resources "/categories", CategoryController
   end
 
   # Other scopes may use custom stacks.

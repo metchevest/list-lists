@@ -18,7 +18,11 @@ defmodule Lists.Array do
 
   """
   def list_lists do
-    Repo.all(List)
+
+    List
+      |> Repo.all()
+      |> Repo.preload([:items, :categories, :items])
+
   end
 
   @doc """

@@ -12,5 +12,17 @@ defmodule Lists.Repo.Migrations.AddListsCategoryAssociation do
 
     create unique_index(:categories_lists, [:category_id, :list_id])
 
+    alter table(:lists) do
+      add :user_id, references(:users)
+    end
+
+    alter table(:items) do
+      add :list_id, references(:lists)
+    end
+
+    alter table(:categories) do
+      add :user_id, references(:users)
+    end
+
   end
 end
