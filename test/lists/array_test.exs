@@ -20,7 +20,7 @@ defmodule Lists.ArrayTest do
     end
 
     test "list_lists/0 returns all lists" do
-      list = list_fixture()
+      list = list_fixture() |> Repo.preload([:categories, :items])
       assert Array.list_lists() == [list]
     end
 

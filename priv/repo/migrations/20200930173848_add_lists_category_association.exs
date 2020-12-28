@@ -7,7 +7,6 @@ defmodule Lists.Repo.Migrations.AddListsCategoryAssociation do
       add :category_id, references(:categories)
       add :list_id, references(:lists)
 
-      timestamps()
     end
 
     create unique_index(:categories_lists, [:category_id, :list_id])

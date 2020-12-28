@@ -5,8 +5,9 @@ defmodule Lists.Items do
 
   import Ecto.Query, warn: false
   alias Lists.Repo
-
+  alias Lists.Array.List
   alias Lists.Items.Item
+  alias Lists.Accounts.User
 
   @doc """
   Returns the list of items.
@@ -35,7 +36,9 @@ defmodule Lists.Items do
       ** (Ecto.NoResultsError)
 
   """
-  def get_item!(id), do: Repo.get!(Item, id)
+  defp get_item!(id), do: Repo.get!(Item, id)
+
+  def get_item(id), do: Repo.get(Item, id)
 
   @doc """
   Creates a item.
@@ -100,5 +103,63 @@ defmodule Lists.Items do
   """
   def change_item(%Item{} = item, attrs \\ %{}) do
     Item.changeset(item, attrs)
+  end
+
+  # See if the input name has to be harcoded
+
+  def new_item(%{"google_user_id" => google_user_id, "list_id" => list_id, "text" => text}) do
+    query =
+      from l in List,
+        inner_join: u in User,
+        where: l.id == ^list_id and u.google_id == ^google_user_id
+
+    case Repo.one(query) do
+      nil ->
+        nil
+
+      list ->
+        Ecto.build_assoc(list, :items, %{text: text}) |> Repo.insert!()
+    end
+  end
+
+  def delete_user_item(%{
+        "google_user_id" => google_id,
+        "item_id" => item_id,
+        "list_id" => list_id
+      }) do
+    get_item_from(google_id, list_id, item_id)
+    |> Repo.delete()
+    |> elemOne
+  end
+
+  def edit_item(%{
+        "google_user_id" => google_id,
+        "item_id" => item_id,
+        "list_id" => list_id,
+        "text" => text
+      }) do
+    get_item_from(google_id, list_id, item_id)
+    |> update_item(%{"text" => text})
+    |> elemOne
+  end
+
+  def elemOne({:ok, elem}) do
+    elem
+  end
+
+  def elemOne({:error, _changeset}) do
+    nil
+  end
+
+  def get_item_from(google_id, list_id, item_id) do
+    query =
+      from i in Item,
+        inner_join: u in User,
+        inner_join: l in List,
+        where: u.google_id == ^google_id and l.id == ^list_id and i.id == ^item_id
+
+    query
+    |> Repo.one()
+    |> Repo.preload(:list)
   end
 end

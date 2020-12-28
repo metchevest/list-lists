@@ -53,41 +53,41 @@ defmodule ListsWeb.ListControllerTest do
     end
   end
 
-  describe "update list" do
-    setup [:create_list]
+  # describe "update list" do
+  #   setup [:create_list]
 
-    test "renders list when data is valid", %{conn: conn, list: %List{id: id} = list} do
-      conn = put(conn, Routes.list_path(conn, :update, list), list: @update_attrs)
-      assert %{"id" => ^id} = json_response(conn, 200)["data"]
+  #   test "renders list when data is valid", %{conn: conn, list: %List{id: id} = list} do
+  #     conn = put(conn, Routes.list_path(conn, :update, list), list: @update_attrs)
+  #     assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
-      conn = get(conn, Routes.list_path(conn, :show, id))
+  #     conn = get(conn, Routes.list_path(conn, :show, id))
 
-      assert %{
-               "id" => id,
-               "active" => false,
-               "date_init" => "2011-05-18",
-               "name" => "some updated name"
-             } = json_response(conn, 200)["data"]
-    end
+  #     assert %{
+  #              "id" => id,
+  #              "active" => false,
+  #              "date_init" => "2011-05-18",
+  #              "name" => "some updated name"
+  #            } = json_response(conn, 200)["data"]
+  #   end
 
-    test "renders errors when data is invalid", %{conn: conn, list: list} do
-      conn = put(conn, Routes.list_path(conn, :update, list), list: @invalid_attrs)
-      assert json_response(conn, 422)["errors"] != %{}
-    end
-  end
+  #   test "renders errors when data is invalid", %{conn: conn, list: list} do
+  #     conn = put(conn, Routes.list_path(conn, :update, list), list: @invalid_attrs)
+  #     assert json_response(conn, 422)["errors"] != %{}
+  #   end
+  # end
 
-  describe "delete list" do
-    setup [:create_list]
+  # describe "delete list" do
+  #   setup [:create_list]
 
-    test "deletes chosen list", %{conn: conn, list: list} do
-      conn = delete(conn, Routes.list_path(conn, :delete, list))
-      assert response(conn, 204)
+  #   test "deletes chosen list", %{conn: conn, list: list} do
+  #     conn = delete(conn, Routes.list_path(conn, :delete, list))
+  #     assert response(conn, 204)
 
-      assert_error_sent 404, fn ->
-        get(conn, Routes.list_path(conn, :show, list))
-      end
-    end
-  end
+  #     assert_error_sent 404, fn ->
+  #       get(conn, Routes.list_path(conn, :show, list))
+  #     end
+  #   end
+  # end
 
   defp create_list(_) do
     list = fixture(:list)

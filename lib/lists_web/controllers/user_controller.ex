@@ -15,5 +15,12 @@ defmodule ListsWeb.UserController do
     render(conn, "index.json", users: users)
   end
 
+  def login_user(conn, %{"google_user_id" => google_id}) do
+    IO.puts "login_user controller"
+    IO.inspect(google_id)
+    user = Accounts.user_logged_by_google_id(google_id)
+    render(conn, "justuser.json", user: user)
+
+  end
 
 end

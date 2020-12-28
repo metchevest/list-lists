@@ -4,6 +4,7 @@ defmodule Lists.Accounts.User do
 
   schema "users" do
     field :name, :string
+    field :google_id, :string
 
     has_many :lists, Lists.Array.List
     has_many :categories, Lists.Categories.Category
@@ -14,7 +15,7 @@ defmodule Lists.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name])
-    |> validate_required([:name])
+    |> cast(attrs, [:google_id])
+    |> validate_required([:google_id])
   end
 end

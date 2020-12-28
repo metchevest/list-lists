@@ -4,9 +4,13 @@ defmodule Lists.Categories do
   """
 
   import Ecto.Query, warn: false
+
   alias Lists.Repo
 
   alias Lists.Categories.Category
+  alias Lists.Accounts.User
+  alias Lists.Array.List
+  alias Lists.Array
 
   @doc """
   Returns the list of categories.
@@ -23,21 +27,9 @@ defmodule Lists.Categories do
     |> Repo.preload(:lists)
   end
 
-  @doc """
-  Gets a single category.
+  defp get_category!(id), do: Repo.get!(Category, id)
 
-  Raises `Ecto.NoResultsError` if the Category does not exist.
-
-  ## Examples
-
-      iex> get_category!(123)
-      %Category{}
-
-      iex> get_category!(456)
-      ** (Ecto.NoResultsError)
-
-  """
-  def get_category!(id), do: Repo.get!(Category, id)
+  def get_category(id), do: Repo.get(Category, id)
 
   @doc """
   Creates a category.
@@ -88,7 +80,9 @@ defmodule Lists.Categories do
 
   """
   def delete_category(%Category{} = category) do
-    Repo.delete(category)
+    category
+    |> Repo.preload(:lists)
+    |> Repo.delete()
   end
 
   @doc """
@@ -102,5 +96,50 @@ defmodule Lists.Categories do
   """
   def change_category(%Category{} = category, attrs \\ %{}) do
     Category.changeset(category, attrs)
+  end
+
+  # Repo.all(from c in Category, inner_join: l in List, group_by: [c.id, l.id])
+
+  # testear cuando tenga mas info...
+  # query = from c in Category,
+  # inner_join: u in User,
+  # inner_join: l in List,
+  # where: u.google_id == ^google_user_id,
+  # group_by: c.name,
+  # select: [c.name, count(l)]
+
+  def list_user_categories(%{"google_user_id" => google_user_id}) do
+    query =
+      from c in Category,
+        inner_join: u in User,
+        inner_join: l in List,
+        where: u.google_id == ^google_user_id
+
+    query
+    |> Repo.all()
+    |> Repo.preload([:user, :lists])
+  end
+
+  def new_user_category(%{
+        "google_user_id" => google_id,
+        "name" => name,
+        "description" => description
+      }) do
+    query = from u in User, where: u.google_id == ^google_id
+
+    query
+    |> Repo.one()
+    |> Repo.preload(:categories)
+    |> create_assoc_category(name, description)
+  end
+
+  def create_assoc_category(nil, _name, _description) do
+    nil
+  end
+
+  def create_assoc_category(user, name, description) do
+    user
+    |> Ecto.build_assoc(:categories, %{name: name, description: description})
+    |> Repo.insert!()
   end
 end

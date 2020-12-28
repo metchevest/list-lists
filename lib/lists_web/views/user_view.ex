@@ -12,9 +12,15 @@ defmodule ListsWeb.UserView do
   def render("user.json", %{user: user}) do
     %{  name: user.name,
         id: user.id,
+        google_id: user.google_id,
         lists: render_many(user.lists, ListsWeb.ListView, "list.json")
       }
   end
 
+  def render("justuser.json", %{user: user}) do
+    %{
+      google_id: user.google_id
+    }
+  end
 
 end

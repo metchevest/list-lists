@@ -13,4 +13,11 @@ defmodule ListsWeb.ErrorView do
   def template_not_found(template, _assigns) do
     Phoenix.Controller.status_message_from_template(template)
   end
+
+  #To-DO define if this belongs here
+  def render("404.json", %{error: error}) do
+    %{errors: %{
+        message: error
+    }}
+  end
 end

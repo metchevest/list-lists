@@ -5,8 +5,11 @@ config :lists, Lists.Repo,
   username: "postgres",
   password: "postgres",
   database: "lists_dev",
+  # hostname: "localhost",
+  #################################################################
   hostname: "localhost",
-  port: "5435",
+  ## DOCKER WILL WORK WITH THIS ????
+  ################################################################ 333
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -18,7 +21,7 @@ config :lists, Lists.Repo,
 # with webpack to recompile .js and .css sources.
 config :lists, ListsWeb.Endpoint,
   http: [port: 4000],
-  debug_errors: true,
+  debug_errors: false,
   code_reloader: true,
   check_origin: false,
   watchers: [

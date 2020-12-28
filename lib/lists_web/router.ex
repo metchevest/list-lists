@@ -13,13 +13,34 @@ defmodule ListsWeb.Router do
     plug :accepts, ["json"]
   end
 
-   scope "/", ListsWeb do
-    pipe_through :api
+  scope "/", ListsWeb do
+    pipe_through :browser
 
     resources "/users", UserController
     resources "/lists", ListController
     resources "/items", ItemController
     resources "/categories", CategoryController
+  end
+
+  scope "/api", ListsWeb do
+    pipe_through :api
+
+    get "/user/:google_user_id", UserController, :login_user
+    get "/user/:google_user_id/lists", ListController, :get_user_lists
+    get "/user/:google_user_id/list/:list_id", ListController, :get_user_list
+    get "/user/:google_user_id/list/:list_id/items", ItemController, :get_items
+    get "/user/:google_user_id/categories", CategoryController, :get_user_categories
+
+    post "/user/:google_user_id/list", ListController, :new_list
+    post "/user/:google_user_id/list/:list_id/item", ItemController, :new_item
+    post "/user/:google_user_id/category", CategoryController, :new_user_category
+    post "/user/:google_user_id/list/:list_id/category", ListController, :update_categories
+
+    delete "/user/:google_user_id/list/:list_id", ListController, :delete_list
+    delete "/user/:google_user_id/list/:list_id/item/:item_id", ItemController, :delete_item
+
+    patch "/user/:google_user_id/list/:list_id", ListController, :edit_list
+    patch "/user/:google_user_id/list/:list_id/item/:item_id", ItemController, :edit_item
   end
 
   # Other scopes may use custom stacks.

@@ -24,7 +24,32 @@ defmodule Lists.Accounts do
     |> Repo.preload(lists: :items)
   end
 
-  @doc """
+  def user_logged_by_google_id(google_id) do
+    IO.puts "Estoy en user_logged.."
+    IO.inspect(google_id)
+
+    query = from u in User,
+            where: u.google_id == ^google_id
+
+    case Repo.one(query) do
+      nil -> new_user(google_id)
+      user -> user
+    end
+
+  end
+
+  def new_user(google_id) do
+    IO.puts "Estyo en new_user"
+    IO.inspect(google_id)
+    case create_user(%{"google_id" => google_id}) do
+      {:ok, user} -> user
+      {:error, message } -> message
+    end
+  end
+
+
+
+   @doc """
   Gets a single user.
 
   Raises `Ecto.NoResultsError` if the User does not exist.
@@ -110,12 +135,26 @@ defmodule Lists.Accounts do
   """
 
   def add_list_to_user(user, list) do
-    user
-    |> Repo.preload(:lists)
-    |> Ecto.Changeset.change()
-    |> Ecto.Changeset.put_assoc(:lists, [list])
-    |> Repo.update!()
+    IO.inspect(user)
+    user = Repo.preload(user, :lists)
+    list_with_change = user.lists ++ [list] |> Enum.map(&Ecto.Changeset.change/1)
 
+    user
+    |> Ecto.Changeset.change
+    |> Ecto.Changeset.put_assoc(:lists, list_with_change)
+    |> Repo.update!
+
+ end
+
+ def add_list_to_user_by_google_id(user_google_id, list) do
+  case Repo.one(from u in User, where: u.google_id == ^user_google_id) do
+      nil -> nil
+      user -> add_list_to_user(user, list)
   end
+ end
+
+ def get_user_by_google_id(id) do
+    Repo.one(from u in User, where: u.google_id == ^id)
+ end
 
 end

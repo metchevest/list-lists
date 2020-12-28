@@ -8,6 +8,7 @@ use Mix.Config
 config :lists, Lists.Repo,
   username: "postgres",
   password: "postgres",
+  # port: 5435,
   database: "lists_test#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
@@ -19,4 +20,6 @@ config :lists, ListsWeb.Endpoint,
   server: false
 
 # Print only warnings and errors during test
-config :logger, level: :warn
+config :logger,
+  backends: [:console],
+  compile_time_purge_level: :debug

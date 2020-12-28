@@ -3,14 +3,18 @@ defmodule Lists.Array.List do
   import Ecto.Changeset
 
   schema "lists" do
-    field :active, :boolean, default: false
+    field :active, :boolean, default: true
     field :date_init, :date
     field :name, :string
+    field :description, :string
 
     belongs_to :user, Lists.Accounts.User
-    has_many :items, Lists.Items.Item
+    has_many :items, Lists.Items.Item, on_replace: :delete, on_delete: :delete_all
 
-    many_to_many :categories, Lists.Categories.Category, join_through: "categories_lists", on_replace: :delete
+    many_to_many :categories, Lists.Categories.Category,
+      join_through: "categories_lists",
+      on_replace: :delete,
+      on_delete: :delete_all
 
     timestamps()
   end
@@ -18,7 +22,7 @@ defmodule Lists.Array.List do
   @doc false
   def changeset(list, attrs) do
     list
-    |> cast(attrs, [:name, :date_init, :active])
-    |> validate_required([:name, :date_init, :active])
+    |> cast(attrs, [:name, :description, :active])
+    |> validate_required([:name, :description])
   end
 end

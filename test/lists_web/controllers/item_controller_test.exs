@@ -50,40 +50,40 @@ defmodule ListsWeb.ItemControllerTest do
     end
   end
 
-  describe "update item" do
-    setup [:create_item]
+  # describe "update item" do
+  #   setup [:create_item]
 
-    test "renders item when data is valid", %{conn: conn, item: %Item{id: id} = item} do
-      conn = put(conn, Routes.item_path(conn, :update, item), item: @update_attrs)
-      assert %{"id" => ^id} = json_response(conn, 200)["data"]
+  #   test "renders item when data is valid", %{conn: conn, item: %Item{id: id} = item} do
+  #     conn = put(conn, Routes.item_path(conn, :update, item), item: @update_attrs)
+  #     assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
-      conn = get(conn, Routes.item_path(conn, :show, id))
+  #     conn = get(conn, Routes.item_path(conn, :show, id))
 
-      assert %{
-               "id" => id,
-               "mark" => false,
-               "text" => "some updated text"
-             } = json_response(conn, 200)["data"]
-    end
+  #     assert %{
+  #              "id" => id,
+  #              "mark" => false,
+  #              "text" => "some updated text"
+  #            } = json_response(conn, 200)["data"]
+  #   end
 
-    test "renders errors when data is invalid", %{conn: conn, item: item} do
-      conn = put(conn, Routes.item_path(conn, :update, item), item: @invalid_attrs)
-      assert json_response(conn, 422)["errors"] != %{}
-    end
-  end
+  #   test "renders errors when data is invalid", %{conn: conn, item: item} do
+  #     conn = put(conn, Routes.item_path(conn, :update, item), item: @invalid_attrs)
+  #     assert json_response(conn, 422)["errors"] != %{}
+  #   end
+  # end
 
-  describe "delete item" do
-    setup [:create_item]
+  # describe "delete item" do
+  #   setup [:create_item]
 
-    test "deletes chosen item", %{conn: conn, item: item} do
-      conn = delete(conn, Routes.item_path(conn, :delete, item))
-      assert response(conn, 204)
+  #   test "deletes chosen item", %{conn: conn, item: item} do
+  #     conn = delete(conn, Routes.item_path(conn, :delete, item))
+  #     assert response(conn, 204)
 
-      assert_error_sent 404, fn ->
-        get(conn, Routes.item_path(conn, :show, item))
-      end
-    end
-  end
+  #     assert_error_sent 404, fn ->
+  #       get(conn, Routes.item_path(conn, :show, item))
+  #     end
+  #   end
+  # end
 
   defp create_item(_) do
     item = fixture(:item)

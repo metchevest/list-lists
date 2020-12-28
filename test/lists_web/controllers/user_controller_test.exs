@@ -15,7 +15,8 @@ defmodule ListsWeb.UserControllerTest do
   describe "index" do
     test "lists all users", %{conn: conn} do
       conn = get(conn, Routes.user_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Users"
+      {:ok, user} = Accounts.create_user(@create_attrs)
+      assert json_response(conn, 200) == render_json("index.json", user: user)
     end
   end
 
@@ -75,6 +76,7 @@ defmodule ListsWeb.UserControllerTest do
     test "deletes chosen user", %{conn: conn, user: user} do
       conn = delete(conn, Routes.user_path(conn, :delete, user))
       assert redirected_to(conn) == Routes.user_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.user_path(conn, :show, user))
       end

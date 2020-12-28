@@ -20,7 +20,7 @@ defmodule Lists.CategoriesTest do
     end
 
     test "list_categories/0 returns all categories" do
-      category = category_fixture()
+      category = category_fixture() |> Repo.preload([:lists])
       assert Categories.list_categories() == [category]
     end
 
