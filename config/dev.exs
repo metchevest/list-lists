@@ -5,11 +5,10 @@ config :lists, Lists.Repo,
   username: "postgres",
   password: "postgres",
   database: "lists_dev",
-  # hostname: "localhost",
-  #################################################################
   hostname: "localhost",
-  ## DOCKER WILL WORK WITH THIS ????
-  ################################################################ 333
+  ################################################################
+  # hostname: "db",
+  ################################################################
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
