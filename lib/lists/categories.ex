@@ -27,8 +27,6 @@ defmodule Lists.Categories do
     |> Repo.preload(:lists)
   end
 
-  defp get_category!(id), do: Repo.get!(Category, id)
-
   def get_category(id), do: Repo.get(Category, id)
 
   @doc """

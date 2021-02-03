@@ -22,6 +22,8 @@ defmodule Lists.Items do
     Repo.all(Item)
   end
 
+  defp get_item!(id), do: Repo.get!(Item, id)
+
   @doc """
   Gets a single item.
 
@@ -36,8 +38,6 @@ defmodule Lists.Items do
       ** (Ecto.NoResultsError)
 
   """
-  defp get_item!(id), do: Repo.get!(Item, id)
-
   def get_item(id), do: Repo.get(Item, id)
 
   @doc """
@@ -104,8 +104,6 @@ defmodule Lists.Items do
   def change_item(%Item{} = item, attrs \\ %{}) do
     Item.changeset(item, attrs)
   end
-
-  # See if the input name has to be harcoded
 
   def new_item(%{"google_user_id" => google_user_id, "list_id" => list_id, "text" => text}) do
     query =

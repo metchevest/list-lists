@@ -150,28 +150,9 @@ defmodule Lists.Array do
     # TODO---> TEST THIS FUNCTION
     category
     |> Repo.preload(:lists)
-    # <- the category as param ???
     |> Ecto.Changeset.change(category)
     |> Ecto.Changeset.put_assoc(:lists, [list])
     |> Repo.update!()
-
-    # category = Repo.preload(category, :lists)
-    # list = Repo.preload(list, [:categories, :items, :users])
-
-    # category_changeset = Ecto.Changeset.change(category)
-
-    # category_list_changeset = category_changeset |> Ecto.Changeset.put_assoc(:lists, [list])
-
-    # Repo.update!(category_list_changeset)
-    ###########################################
-    # list_loaded = Repo.preload(list, :categories)
-
-    # categories_change = list_loaded.categories ++ [category] |> Enum.map(&Ecto.Changeset.change/1)
-
-    # list_loaded
-    #   |> Ecto.Changeset.change()
-    #   |> Ecto.Changeset.put_assoc(:categories, categories_change)
-    #   |> Repo.update!()
   end
 
   @doc """
@@ -262,13 +243,7 @@ defmodule Lists.Array do
 
     get_user_list(google_id, list_id)
     |> Ecto.Changeset.change()
-    |> IO.inspect()
     |> Ecto.Changeset.put_assoc(:categories, categories_loaded)
     |> Repo.update!()
-
-    # Array.add_category_to_list()
-    # IO.puts("en el context categories")
-    # IO.inspect(categories)
-    # IO.inspect(list)
   end
 end

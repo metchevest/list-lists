@@ -80,14 +80,11 @@ defmodule ListsWeb.CategoryController do
   end
 
   def new_user_category(conn, params) do
-    IO.inspect(params)
-
     case Categories.new_user_category(params) do
       nil ->
         render(conn, "error.jason")
 
       category ->
-        IO.puts("en new_user_Category")
         render(conn, "one_category.json", category: category)
     end
   end

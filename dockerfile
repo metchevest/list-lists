@@ -1,27 +1,3 @@
-# FROM bitwalker/alpine-elixir-phoenix:latest
-
-# # Set exposed ports
-# EXPOSE 5000
-# ENV PORT=5000 MIX_ENV=dev
-
-# #Install postgres client
-# RUN apk --update add postgresql-client
-
-# # Cache elixir deps
-# ADD mix.exs mix.lock ./
-# RUN mix do deps.get, deps.compile
-
-# # Same with npm deps
-# ADD assets/package.json assets/
-# RUN cd assets && \
-#     npm install
-
-# ADD . .
-
-# USER default
-
-# CMD ["./entrypoint.sh"]
-
 FROM elixir:1.9.0-alpine AS build
 
 # install build dependencies
@@ -81,14 +57,6 @@ COPY --from=build --chown=nobody:nobody /app/_build/prod/rel/lists ./
 
 ENV HOME=/app
 
-# RUN /app/_build/dev/rel/lists/bin/lists eval "Lists.Release.migrate"
-
-# RUN bin/lists eval "Lists.Release.createdb()"
-
-# CMD ["bin/lists", "start"]
 ADD . .
 
-# RUN chmod +x ./wait-for-postgres.sh
 CMD ["bash", "entrypoint.sh"]
-
-# CMD ["bin/lists", "start"]

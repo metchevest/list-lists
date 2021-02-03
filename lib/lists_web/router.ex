@@ -13,14 +13,14 @@ defmodule ListsWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", ListsWeb do
-    pipe_through :browser
+  # scope "/", ListsWeb do
+  #   pipe_through :browser
 
-    resources "/users", UserController
-    resources "/lists", ListController
-    resources "/items", ItemController
-    resources "/categories", CategoryController
-  end
+  #   resources "/users", UserController
+  #   resources "/lists", ListController
+  #   resources "/items", ItemController
+  #   resources "/categories", CategoryController
+  # end
 
   scope "/api", ListsWeb do
     pipe_through :api
