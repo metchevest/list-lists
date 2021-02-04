@@ -1,0 +1,7 @@
+TO-DO
+
+--
+No estoy haciendo la navegación automática cuando creo una lista.
+Ver si voy a hacer todo en una pantalla o si voy a hacer en varias
+y tiene sentido que cuando un usuario termine de crear una lista 
+vuelva al index.
