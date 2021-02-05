@@ -21,6 +21,6 @@ services:
       dockerfile: dockerfileclient.dev
     ports:
       - "3000:3000"
-    volumes:
-      - "client/app/node_modules"
-      - "./client/:/app"
+    # volumes:
+    #   - "client/app/node_modules"
+    #   - "./client/:/app"
