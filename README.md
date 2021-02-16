@@ -2,7 +2,7 @@
 
 ### Clone the project:
 
-`git clone https://www.github.com/metchevest/ballsorter`
+`git clone https://www.github.com/metchevest/list-lists`
 
 ### Build the container:
 
