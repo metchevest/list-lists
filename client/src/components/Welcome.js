@@ -66,6 +66,7 @@ const Welcome = () => {
 					After creating a new Item, when confirm with keyboard, if you go back
 					to the input, an error on non-empty field signal is showed.
 				</li>
+				<li>Category Create on empty description.</li>
 			</ul>
 		</div>
 	);

@@ -19,4 +19,3 @@ bin="bin/lists"
 # start the elixir application
 exec "$bin" "start"
 
-# bin/lists start

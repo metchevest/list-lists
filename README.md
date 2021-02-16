@@ -1,20 +1,17 @@
-# Lists
+### To test the app, you should do:
 
-To start your Phoenix server:
+### Clone the project:
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `npm install` inside the `assets` directory
-  * Start Phoenix endpoint with `mix phx.server`
+`git clone https://www.github.com/metchevest/ballsorter`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+### Build the container:
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+`docker-compose build`
 
-## Learn more
+### Run the project:
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+`docker-compose up`
+
+### Access:
+
+`http://localhost:3000`
