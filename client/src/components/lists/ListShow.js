@@ -22,11 +22,7 @@ class ListShow extends React.Component {
 			return <Loading />;
 		}
 
-		return (
-			<div>
-				<ListShowSwitch list={this.props.list} />
-			</div>
-		);
+		return <ListShowSwitch list={this.props.list} />;
 	}
 }
 

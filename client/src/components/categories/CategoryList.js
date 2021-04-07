@@ -32,7 +32,7 @@ class CategoryList extends React.Component {
 		return this.props.categories.map((aCategory) => {
 			return (
 				<tr key={aCategory.id}>
-					<td className="margin-auto">
+					<td>
 						<h4 className="ui image header">
 							<div className="content">
 								<Link to={`/category/${aCategory.id}/lists`}>
@@ -50,8 +50,6 @@ class CategoryList extends React.Component {
 	}
 
 	render() {
-		console.log("CategoryList.render");
-		console.log(this.props);
 		if (!this.props.categories) {
 			return (
 				<div>
@@ -68,8 +66,8 @@ class CategoryList extends React.Component {
 			);
 		} else {
 			return (
-				<div>
-					<Headline text="All your Categories." />
+				<div className="category__list">
+					<Headline text="All your Categories:" />
 					<table className="ui celled padded table">
 						<thead>
 							<tr>

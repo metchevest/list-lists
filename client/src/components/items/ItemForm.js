@@ -47,7 +47,7 @@ class ItemForm extends React.Component {
 					onSubmit={this.props.handleSubmit(this.onSubmit)}
 				>
 					<Field name="text" component={this.renderInput} />
-					<div className="add-item-btn">
+					<div className="item__form_button">
 						<button className="ui basic positive button">
 							{this.props.buttonText}
 						</button>

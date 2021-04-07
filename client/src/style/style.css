@@ -1,79 +1,414 @@
-.main-panel {
-	padding-top: 2em;
-	height: 80vh;
-	margin: 10;
-	overflow: auto;
-	padding: 5px;
+html {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-.right-panel {
-	padding: 10px;
+*,
+*:before,
+*:after {
+	-webkit-box-sizing: inherit;
+	-moz-box-sizing: inherit;
+	box-sizing: inherit;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	height: 100vh;
+	width: 100vw;
+}
+
+#root {
 	height: 100%;
+	width: 100%;
 }
 
-.linked {
-	color: steelblue;
+.main__container {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	/* justify-content: start; */
+	overflow: overlay;
+	overflow-x: hidden;
 }
 
-.limited {
-	max-width: 250px;
+.menu__header {
+	/* background-color: lightseagreen; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100vw;
+	top: 0;
+	right: 0;
+	border: solid 2px rgb(64, 155, 235);
+	border-radius: 1rem;
+	margin: 1vh 0 1vh 0;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	min-width: 20rem;
+}
+
+.main_panel {
+	display: flex;
+	flex-direction: column;
+	/* justify-content: space-evenly; */
+}
+
+.left__panel {
+	width: 100vw;
+	border: solid 2px rgb(64, 155, 235);
+	border-radius: 1rem;
+	padding: 1rem;
+	padding-bottom: 5rem;
+	margin-bottom: 1vh;
+	min-width: 20rem;
+	position: relative;
+}
+
+.right__panel {
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	/* justify-content: space-between; */
+	align-items: stretch;
+	border: solid 2px rgb(64, 155, 235);
+	border-radius: 1rem;
+	padding: 1rem;
+	/* padding-top: 2rem; */
+	min-width: 20rem;
+	position: relative;
+	/* overflow: auto; */
+}
+
+.left__panel_footer {
+	position: absolute;
+	height: 5rem;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	margin-bottom: 1rem;
+	min-width: 220px;
+	padding: 1rem;
+}
+
+.right__panel_footer {
+	position: absolute;
+	height: 5rem;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	margin-bottom: 1rem;
+	min-width: 220px;
+	padding: 1rem;
+}
+
+.list__show {
+	margin-bottom: 1rem;
+	/* background-color: lightskyblue; */
+	/* height: 25%; */
+}
+
+.list__show_state {
+	margin: 1rem;
+}
+
+.item__form {
+	margin-top: 3rem;
+}
+
+.item__form_button {
+	display: flex;
+	justify-content: center;
+}
+
+.list__show_header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1rem;
+}
+
+.list__card_item {
+	border: 1px solid aliceblue;
+	box-shadow: 5px 10px 10px aliceblue;
+	border-radius: 0.5rem;
+	background-color: aliceblue;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	min-width: 216px;
+	max-width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.item__extra_content {
+	padding: 1rem;
+}
+
+.item__grid_list {
+	padding-bottom: 1rem;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: center;
 	overflow: auto;
 }
 
-.scroll {
+.list__grid_item {
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
+	/* flex-direction: column; */
+	border: 1px solid rgb(64, 155, 235);
+	box-shadow: 5px 10px 10px aliceblue;
+	border-radius: 2rem;
+	padding: 0.5rem;
+	margin: 0.5rem;
+	/* background-color: burlywood; */
+	/* text-align: center; */
+	/* position: relative; */
+	width: 100%;
+	/* height: 4rem; */
+	max-width: 300px;
+}
+
+.list__grid_top {
+	padding: 0.5rem;
+	width: 100%;
+	overflow: auto;
+	text-align: center;
+}
+
+.list__grid_button {
+	width: 6rem;
+	margin-bottom: 0.25rem !important; /* I'm using Semantic UI classes so I need to put this rule as important to take effect*/
+}
+
+.item {
+	cursor: pointer;
+	color: rgb(6, 69, 173) !important;
+}
+
+.right__panel_list {
+	overflow: overlay;
+	margin-bottom: 5rem;
+	padding: 1vw;
+}
+
+.welcome-messages {
 	overflow: auto;
 }
 
-.margin-auto {
-	margin-left: auto !important;
-	margin-right: auto !important;
+.category__list {
+	overflow: auto;
+	padding: 1rem;
 }
 
-.nice-back {
-	background-color: aliceBlue !important;
+.category__picker {
+	overflow: auto;
 }
 
-.pointed {
+.categorypicker__text {
+	font-size: 0.75rem;
+	padding: 1rem;
+}
+
+.category__picker-item {
+	border: 1px solid aqua;
+	margin: 0.5rem;
+	border-radius: 1rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	text-align: center;
 	cursor: pointer;
 }
 
-.item-pretty {
-	height: 100%;
-	padding: 20px 0;
+.category__picker-grid {
+	/* border: 1px solid orange; */
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.category__selected-cell {
+	background-color: aquamarine;
+}
+
+.category__picker-footer {
 	text-align: center;
 }
 
-.padded-bottom {
-	padding-bottom: 15px;
-}
-
-.padded-top {
-	padding: 15px !important;
-}
-
-.margin-extra {
-	margin: 15px !important;
-}
-.nice-cell {
-	border-style: 2px solid !important;
-	border-radius: 5px !important;
+.category__picker-button {
+	width: 7rem;
 	text-align: center;
 }
+/* Follow Bootstrap breakpoints.*/
+@media (min-width: 576px) {
+	/*For portrait phones*/
 
-.selected-cell {
-	background-color: aquamarine !important;
+	.left__panel {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.list_show__header {
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.right__panel {
+		width: 100vw;
+		/* height: 100%; */
+		padding: 0.5vw;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		padding-bottom: 5rem;
+	}
+
+	.right__panel_list {
+		overflow: overlay;
+		margin-bottom: 1rem;
+		padding: 1vw;
+	}
+
+	.main__container {
+		width: 100vw;
+	}
+
+	.list__show_header {
+		padding-top: 0;
+		flex-direction: row;
+		justify-content: space-between;
+	}
 }
 
-.unselected-cell {
-	background-color: aliceblue !important;
+@media (min-width: 768px) {
+	/*For tablets*/
+
+	.right__panel {
+		width: 30vw;
+	}
+
+	.list__grid_item {
+		border: 1px solid rgb(64, 155, 235);
+		box-shadow: 5px 10px 10px aliceblue;
+		border-radius: 2rem;
+		padding: 0.5rem;
+		margin: 0.5rem;
+		text-align: center;
+		position: relative;
+		width: 14rem;
+		height: 8rem;
+	}
+
+	.list__grid_buttons {
+		position: absolute;
+		bottom: 1rem;
+		left: 0;
+		width: 100%;
+	}
+
+	/* .right__panel_main {
+		position: relative;
+	} */
+
+	/* .right__panel_footer {
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		left: 0;
+	} */
+
+	.left__panel {
+		/* width: 65vw; */
+		height: 100%;
+		padding-top: 1rem;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		/* padding-left: 2vw; */
+		/* padding-right: 2vw; */
+		margin-right: 2vw;
+		overflow: hidden;
+		/* align-content: space-between; */
+		/* background-color: lightgreen; */
+	}
+
+	/* .center-panel {
+		height: 60%;
+	} */
+	/* .list__show {
+		flex-direction: row;
+		height: 30%;
+	}
+
+	.left__panel_footer {
+		height: 10%;
+	}
+
+	.center-panel {
+		height: 30;
+	} */
+	.main_panel {
+		margin: 0 0 2vh 0;
+		flex-direction: row;
+		height: 84vh; /*10vh header, 6vh margin*/
+	}
+
+	.menu__header {
+		flex-direction: row;
+		height: 10vh;
+		width: 100vw;
+		/* background-color: hotpink; */
+		justify-content: space-between;
+		margin: 2vh 0 2vh 0;
+		padding: 2rem;
+	}
+
+	.item__grid_list {
+		height: 100%;
+	}
 }
 
-.category-picker {
-	height: 100%;
-	overflow: auto;
+@media (min-width: 992px) {
+	/*For laptops*/
+	.menu__header {
+		/* background-color: lightblue; */
+		/* width: inherit; */
+	}
+
+	.right__panel {
+		max-width: 20rem;
+	}
 }
 
-.padded-text {
-	padding-top: 15px;
-	padding-bottom: 15px;
+@media (min-width: 1200px) {
+	/*For larger devices*/
+
+	/* #root {
+		width: 80rem;
+	} */
+	.menu__header {
+		/* background-color: lightcoral; */
+		width: inherit;
+		margin: auto;
+		/* max-width: 85rem; */
+	}
+
+	.main__container {
+		max-width: 85rem;
+		width: 85rem;
+		margin: auto;
+	}
 }

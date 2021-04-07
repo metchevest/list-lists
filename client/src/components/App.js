@@ -18,13 +18,13 @@ class App extends React.Component {
 			return <NotLogged />;
 		} else {
 			return (
-				<div className="ui grid segment">
-					<div className="ten wide stretched column ">
+				<div className="main_panel">
+					<div className="left__panel">
 						<CentralPanel />
 					</div>
-					<div className="six wide column">
+					<>
 						<ListCardList />
-					</div>
+					</>
 				</div>
 			);
 		}
@@ -32,7 +32,7 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div className="container">
+			<div className="main__container">
 				<Router history={history}>
 					<Header />
 					{this.renderMainPanel()}

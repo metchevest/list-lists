@@ -13,10 +13,8 @@ class ItemNew extends React.Component {
 
 	render() {
 		const formName = `ItemEdit${this.props.listId}`;
-		console.log("en render");
-		console.log(formName);
 		return (
-			<div>
+			<div className="item__form">
 				<ItemForm
 					form={formName}
 					key="itenNewKey"

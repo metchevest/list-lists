@@ -6,34 +6,29 @@ import { showActiveList, showInactiveList, showAllList } from "../actions";
 const FooterRight = (props) => {
 	console.log(props);
 	return (
-		<div className="ui three item menu">
-			<div
-				className={
-					props.show === "active" ? "item nice-back pointed" : "item pointed"
-				}
-				onClick={() => props.showActiveList()}
-			>
-				{" "}
-				<p className="linked">Actives </p>
-			</div>
+		<div className="right__panel_footer">
+			<div className="ui three item menu">
+				<div
+					className={props.show === "active" ? "active item" : "item pointed"}
+					onClick={() => props.showActiveList()}
+				>
+					{" "}
+					<p>Actives </p>
+				</div>
 
-			<div
-				className={
-					props.show === "inactive" ? "item nice-back pointed" : "item pointed"
-				}
-				onClick={() => props.showInactiveList()}
-			>
-				{" "}
-				<p className="linked">Inactives</p>
-			</div>
-			<div
-				className={
-					props.show === "all" ? "item nice-back pointed" : "item pointed"
-				}
-				onClick={() => props.showAllList()}
-			>
-				{" "}
-				<p className="linked">All</p>
+				<div
+					className={props.show === "inactive" ? "active item" : "item"}
+					onClick={() => props.showInactiveList()}
+				>
+					<p>Inactives</p>
+				</div>
+				<div
+					className={props.show === "all" ? "active item" : "item"}
+					onClick={() => props.showAllList()}
+				>
+					{" "}
+					<p>All</p>
+				</div>
 			</div>
 		</div>
 	);

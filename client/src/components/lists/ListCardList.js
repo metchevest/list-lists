@@ -14,7 +14,8 @@ class ListCardList extends React.Component {
 	renderListFiltered(lists) {
 		return lists.map((aList, index) => {
 			return (
-				<div className="card margin-auto" key={index}>
+				//this.myRef no anda porque estaba puesto afuera del map y this era this.
+				<div className="list__card_item" key={index}>
 					<div className="content">
 						<ListState list={aList} />
 						<div className="header">
@@ -27,7 +28,7 @@ class ListCardList extends React.Component {
 							{aList.description.substring(0, 34)}
 						</div>
 					</div>
-					<div className="extra content">
+					<div className="item__extra_content">
 						<div className="ui two buttons">
 							<Link to={`/list/${aList.id}`} className="ui basic green button">
 								{" "}
@@ -68,15 +69,9 @@ class ListCardList extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<div className="ui segment main-panel ">
-					<div ref={this.myRef} className="right-panel scroll">
-						<div className="ui cards div-card">{this.renderList()}</div>
-					</div>
-				</div>
-				<div>
-					<FooterRight />
-				</div>
+			<div className="right__panel" ref={this.myRef}>
+				<div className="right__panel_list">{this.renderList()}</div>
+				<FooterRight />
 			</div>
 		);
 	}

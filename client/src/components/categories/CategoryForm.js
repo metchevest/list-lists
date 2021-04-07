@@ -2,7 +2,7 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 
 class CateogryForm extends React.Component {
-	renderError({ error, touched }) {
+	renderError({ error, touched, label }) {
 		if (touched && error) {
 			return (
 				<div className="ui error message">
@@ -56,10 +56,14 @@ class CateogryForm extends React.Component {
 
 const validate = (formValues) => {
 	const errors = {};
+
 	if (!formValues.name) {
 		errors.name = "You must enter a Name";
 	}
 
+	if (!formValues.description) {
+		errors.description = "You must enter a Description";
+	}
 	return errors;
 };
 

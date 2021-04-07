@@ -92,7 +92,6 @@ export const startUser = (google_user_id) => async (dispatch) => {
 		payload: response.data,
 	});
 
-	console.log("estoy en StarUser");
 	dispatch(signIn(google_user_id));
 	dispatch(fetchLists(google_user_id));
 };
@@ -101,9 +100,6 @@ export const fetchCategories = () => async (dispatch, getState) => {
 	const { google_user_id } = getState().auth;
 
 	const response = await listsServer.get(`/user/${google_user_id}/categories`);
-
-	console.log("estoy en fetch Categories");
-	console.log(response);
 
 	dispatch({ type: FETCH_CATEGORIES, payload: response.data });
 };
@@ -205,7 +201,6 @@ export const fetchLists = () => async (dispatch, getState) => {
 
 	const response = await listsServer.get(`/user/${google_user_id}/lists`);
 
-	// console.log("estoy en fetchLists");
 	dispatch({ type: FETCH_LISTS, payload: response.data });
 };
 
@@ -225,7 +220,6 @@ export const createList = (formValues) => async (dispatch, getState) => {
 export const fetchList = (listId) => async (dispatch, getState) => {
 	// I need to sincronize the request to be done after the sucess of the auth
 	const { google_user_id } = getState().auth;
-	console.log("estoy en fetchList");
 
 	const response = await listsServer.get(
 		`/user/${google_user_id}/list/${listId}`
@@ -286,10 +280,6 @@ export const addItem = (listId, formValues, formName) => async (
 ) => {
 	const { google_user_id } = getState().auth;
 
-	console.log("en el action addItem");
-	console.log(listId);
-	console.log(formValues);
-	console.log(formName);
 	const response = await listsServer.post(
 		`/user/${google_user_id}/list/${listId}/item`,
 		formValues

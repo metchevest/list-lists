@@ -1,11 +1,12 @@
 import React from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 
-import ItemList from "../items/ItemList";
+// import ItemList from "../items/ItemList";
 import ItemEdit from "../items/ItemEdit";
 import CategoryPicker from "../categories/CategoryPicker";
 import ListShowHeader from "./ListShowHeader";
 import ListCategories from "./ListCategories";
+import ItemGridList from "../items/ItemGridList";
 
 const ListShowSwitch = (props) => {
 	let { path, url } = useRouteMatch();
@@ -14,12 +15,6 @@ const ListShowSwitch = (props) => {
 		<>
 			<ListShowHeader list={props.list} url={url} />
 			<Switch>
-				{/* <Route
-				path={path}
-				render={(routerProps) => (
-					<ListShowHeader {...routerProps} list={props.list} url={url} />
-				)}
-			/> */}
 				<Route
 					path={`${path}/setCategory`}
 					render={(routerProps) => (
@@ -27,7 +22,12 @@ const ListShowSwitch = (props) => {
 					)}
 				/>
 				<Route exact path={path}>
-					<ItemList items={props.list.items} listId={props.list.id} url={url} />
+					{/* <ItemList items={props.list.items} listId={props.list.id} url={url} /> */}
+					<ItemGridList
+						items={props.list.items}
+						listId={props.list.id}
+						url={url}
+					/>
 				</Route>
 
 				<Route

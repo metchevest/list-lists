@@ -23,9 +23,6 @@ const ListItem = (props) => {
 			{ x: 8.8, w: 3 },
 			{ x: 11, w: 2.2 },
 		];
-		console.log("en el render de ItemList");
-		console.log(props);
-		// const { path } = this.props.match;
 
 		return (
 			<div className="center-panel">
@@ -45,8 +42,7 @@ const ListItem = (props) => {
 						} else {
 							pos += 1;
 						}
-						console.log("En item list el path es");
-						console.log(`${props.url}/${item.id}`);
+
 						return (
 							<div
 								className="ui positive basic label scroll nice-back"

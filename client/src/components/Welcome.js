@@ -2,7 +2,7 @@ import React from "react";
 
 const Welcome = () => {
 	return (
-		<div className="ui message">
+		<div className="ui message welcome-messages">
 			<div className="header">Welcome to List & Lists</div>
 			<br></br>
 			<ul className="list">
@@ -50,6 +50,9 @@ const Welcome = () => {
 			<div className="header"> Future development:</div>
 			<ul className="list">
 				<li>A lot of testing.</li>
+				<li> Add a pagination for lists and categories </li>
+				<li> Improve the pagination of items</li>
+				<li> Limitate the size of income text.</li>
 				<li>Edit and delete a Category </li>
 				<li>Improve the component ItemList.</li>
 				<li>Manage errors of Axios and connection.</li>
@@ -67,6 +70,9 @@ const Welcome = () => {
 					to the input, an error on non-empty field signal is showed.
 				</li>
 				<li>Category Create on empty description.</li>
+				<li>
+					In mobile version, when the model come up, the background breaks up
+				</li>
 			</ul>
 		</div>
 	);

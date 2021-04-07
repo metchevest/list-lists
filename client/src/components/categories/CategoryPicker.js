@@ -36,24 +36,16 @@ class CategoryPicker extends React.Component {
 		this.props.cleanSelection();
 	}
 	clickedOn(aCategoryId) {
-		// console.log("en clickedOn");
-		// console.log(this.props.selectedCategories);
-		// console.log(aCategoryId);
 		this.props.selectedCategory(aCategoryId);
 	}
 
-	renderCategories() {
+	renderGrid() {
 		return this.props.categories.map((aCategory) => {
-			let className =
-				"four wide column ui positive basic label scroll nice-cell pointed margin-extra ";
+			let className = "category__picker-item ";
 
 			if (this.props.selectedCategories.includes(aCategory.id)) {
-				className = className.concat("selected-cell");
-			} else {
-				className = className.concat("unselected-cell");
+				className = className.concat("category__selected-cell");
 			}
-			console.log("renderCategories.map");
-			console.log(aCategory.id);
 			return (
 				<div
 					key={aCategory.id}
@@ -68,10 +60,6 @@ class CategoryPicker extends React.Component {
 		});
 	}
 
-	renderGrid() {
-		return <div className="ui grid padded-top">{this.renderCategories()}</div>;
-	}
-
 	updateCategories() {
 		let listId = this.props.list.id;
 		this.props.updateCategories(this.props.selectedCategories, listId);
@@ -82,16 +70,21 @@ class CategoryPicker extends React.Component {
 		return (
 			<div>
 				<div
-					className="ui two button mini menu"
+					className="ui basic green button category__picker-button"
 					onClick={() => this.updateCategories()}
 				>
-					<label className="ui basic positive button right menu">Save</label>
+					<label>Save</label>
 				</div>
 				<div
-					className="ui two button mini menu"
+					className="ui basic red button category__picker-button"
 					onClick={() => history.push(`/list/${this.props.list.id}`)}
 				>
-					<label className="ui basic negative button right menu">Cancel</label>
+					<label>Cancel</label>
+				</div>
+				<div className="categorypicker__text">
+					<p> Highlighted Categories are the list's current categories </p>
+					<p> Click on a highlighted Category to delete from the list</p>
+					<p> Click on any other Category to add the category to the list</p>
 				</div>
 			</div>
 		);
@@ -114,9 +107,11 @@ class CategoryPicker extends React.Component {
 			);
 		} else {
 			return (
-				<div>
-					<div>{this.renderGrid()}</div>
-					<div>{this.renderBottomPanel()}</div>
+				<div className="category__picker">
+					<div className="category__picker-grid">{this.renderGrid()}</div>
+					<div className="category__picker-footer">
+						{this.renderBottomPanel()}
+					</div>
 				</div>
 			);
 		}

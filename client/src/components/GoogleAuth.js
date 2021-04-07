@@ -23,7 +23,8 @@ class GoogleAuth extends React.Component {
 
 		window.addEventListener("beforeunload", () => {
 			// TOGGLE THIS LINE TO COMMENT TO MAKE EASY DEBUG.
-			this.onSignOutClick();
+			//Uncomment the next line for release.
+			// this.onSignOutClick();
 		});
 	}
 

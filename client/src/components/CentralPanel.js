@@ -18,8 +18,8 @@ import ListsInCategory from "./lists/ListsInCategory";
 
 const CentralPanel = () => {
 	return (
-		<div>
-			<div className="ui segment main-panel">
+		<>
+			<>
 				<Switch>
 					<Route path="/" exact component={Welcome} />
 					<Route
@@ -43,11 +43,11 @@ const CentralPanel = () => {
 					<Route path="/category/:id/lists" component={ListsInCategory} />
 				</Switch>
 				<Errors />
-			</div>
-			<div>
+			</>
+			<>
 				<Footer />
-			</div>
-		</div>
+			</>
+		</>
 	);
 };
 

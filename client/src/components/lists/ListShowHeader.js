@@ -8,21 +8,19 @@ const ListShowHeader = (props) => {
 	const { name, description, id } = props.list;
 
 	return (
-		<div className="padded-bottom">
-			<div className="ui secondary menu scroll">
-				<div className="item limited">
+		<div className="list__show">
+			<div className="list__show_header">
+				<div>
 					<h3> {name}</h3>
 				</div>
-				<div className="item limited">
+				<div>
 					<h4> {description}</h4>
 				</div>
-				<div className="item limited">
+				<div className="list__show_state">
 					<ListState list={props.list} />
 				</div>
-				<div className="right menu">
-					<div className="item">
-						<ItemNew listId={id} />
-					</div>
+				<div>
+					<ItemNew listId={id} />
 				</div>
 			</div>
 			<div>
@@ -36,7 +34,7 @@ const ListShowHeader = (props) => {
 					</Link>
 					<Link to={`${props.url}/setCategory`} className="item">
 						{" "}
-						<p className="linked">Manage Category</p>
+						<p className="linked">Admin List's Categories</p>
 					</Link>
 				</div>
 			</div>
