@@ -2,33 +2,28 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 class ItemPagination extends React.Component {
-	constructor(props) {
-		super(props);
-		// this.state = { fromState: 0 };
-		console.log("paso por aca");
-	}
-
-	// componentDidMount(){
-
+	// constructor(props) {
+	// 	super(props);
+	// 	this.state = { from: props.from };
+	// 	console.log("Seteo el valor de la lista en el estado");
 	// }
-
-	componentDidMount() {
-		console.log("here");
-	}
 
 	render() {
 		console.log(this.props);
 		let f = this.props.from;
-		let end = f + 6;
+		let end = f + 9;
 
 		/* I need to investigate which are the bests breakpoints */
 		if (this.props.screen > 1170) {
+			console.log("pantalla grande");
 			end = f + 12;
-		} else if (this.props.screen > 963) {
-			end = f + 9;
 		}
+		// else if (this.props.screen > 963) {
+		// 	end = f + 9;
+		// }
 
-		console.log("en render items");
+		console.log("en render items *****************");
+		console.log(f);
 		console.log(end);
 		console.log(this.props);
 

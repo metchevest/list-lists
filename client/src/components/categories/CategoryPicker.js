@@ -73,13 +73,13 @@ class CategoryPicker extends React.Component {
 					className="ui basic green button category__picker-button"
 					onClick={() => this.updateCategories()}
 				>
-					<label>Save</label>
+					<p>Save</p>
 				</div>
 				<div
 					className="ui basic red button category__picker-button"
 					onClick={() => history.push(`/list/${this.props.list.id}`)}
 				>
-					<label>Cancel</label>
+					<p>Cancel</p>
 				</div>
 				<div className="categorypicker__text">
 					<p> Highlighted Categories are the list's current categories </p>

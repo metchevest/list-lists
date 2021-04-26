@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+// import ItemPagination from "./ItemPagination";
 
 import ItemsPagination from "./ItemsPagination";
 
@@ -7,10 +8,11 @@ const ItemGridList = (props) => {
 		console.log("en nextPage");
 		console.log(props);
 
-		if (from + 7 < props.items.length) {
-			setFrom(from + 7);
+		if (from + 6 < props.items.length && screenWidth < 1170) {
+			setFrom(from + 9);
+		} else if (from + 9 < props.items.length && screenWidth >= 1170) {
+			setFrom(from + 12);
 		}
-
 		console.log(from);
 	};
 
@@ -18,10 +20,14 @@ const ItemGridList = (props) => {
 		console.log("en previousPage");
 		console.log(props);
 		console.log(from);
-		if (from > 6) {
-			setFrom(from - 7);
+
+		if (from > 9 && screenWidth < 1170) {
+			setFrom(from - 9);
 		}
-		console.log(from);
+
+		if (from > 12 && screenWidth >= 1170) {
+			setFrom(from - 12);
+		}
 	};
 
 	const renderScroll = () => {
@@ -41,9 +47,11 @@ const ItemGridList = (props) => {
 		}
 	};
 
-	const [from, setFrom] = useState(0);
+	/*Hooks*/
+	const [from, setFrom] = useState(props.fromIndex);
 	const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
+	/* Test if is needed to have this hook, or it's just setted at the begining */
 	useEffect(() => {
 		setScreenWidth(window.innerWidth);
 	}, []);
@@ -51,7 +59,19 @@ const ItemGridList = (props) => {
 	return (
 		<>
 			<div className="item__grid_list">
-				<ItemsPagination from={from} screen={screenWidth} items={props.items} />
+				<ItemsPagination
+					from={from}
+					screen={screenWidth}
+					items={props.items}
+					// to={props.listId}
+					listId={props.listId}
+				/>
+				{/* <ItemPagination
+					itemsperpage={9}
+					nocolumns={3}
+					items={props.items}
+					pagesspan={4}
+				/> */}
 			</div>
 			<>{renderScroll()}</>
 		</>

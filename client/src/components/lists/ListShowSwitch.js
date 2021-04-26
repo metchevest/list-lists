@@ -27,6 +27,7 @@ const ListShowSwitch = (props) => {
 						items={props.list.items}
 						listId={props.list.id}
 						url={url}
+						fromIndex={0}
 					/>
 				</Route>
 

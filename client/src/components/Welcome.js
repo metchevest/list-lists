@@ -33,7 +33,7 @@ const Welcome = () => {
 
 			<br></br>
 			<br></br>
-			<div className="header"> Tools:</div>
+			<div className="header"> Technologies:</div>
 			<ul className="list">
 				<li> React</li>
 				<li> Redux </li>
@@ -41,7 +41,8 @@ const Welcome = () => {
 				<li> The backend was developed in Elixir/Phoenix</li>
 				<li>
 					{" "}
-					The CSS is from <a href="https://semantic-ui.com/"> Semantic UI</a>
+					Custom CSS and some classes from{" "}
+					<a href="https://semantic-ui.com/"> Semantic UI</a>
 				</li>
 				<li> Google OAuth</li>
 			</ul>
@@ -50,13 +51,17 @@ const Welcome = () => {
 			<div className="header"> Future development:</div>
 			<ul className="list">
 				<li>A lot of testing.</li>
-				<li> Add a pagination for lists and categories </li>
-				<li> Improve the pagination of items</li>
+				<li> Add pagination for lists and categories </li>
+				<li> Add pagination for item in mobile version </li>
+				<li>
+					{" "}
+					Improve the pagination of items, like make buttons disabled when they
+					can't be used.
+				</li>
 				<li> Limitate the size of income text.</li>
-				<li>Edit and delete a Category </li>
-				<li>Improve the component ItemList.</li>
-				<li>Manage errors of Axios and connection.</li>
-				<li>Improve SignIn/SignOut policy, current is too restrictive</li>
+				<li> Edit and delete a Category </li>
+				<li> Manage errors of Axios and connection.</li>
+				<li> Improve SignIn/SignOut policy</li>
 				<li>Solve error with Redux Form and keyboard enter</li>
 				<li>...</li>
 			</ul>
@@ -70,9 +75,6 @@ const Welcome = () => {
 					to the input, an error on non-empty field signal is showed.
 				</li>
 				<li>Category Create on empty description.</li>
-				<li>
-					In mobile version, when the model come up, the background breaks up
-				</li>
 			</ul>
 		</div>
 	);
