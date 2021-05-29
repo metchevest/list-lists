@@ -31,10 +31,14 @@ class GoogleAuth extends React.Component {
 	//The function setted as listen to the object of GAPI
 	// receives a boolean indicating if the user is logged
 	onAuthChange = (isSignedIn) => {
+		console.log("en onAUthChange", isSignedIn);
+
 		if (isSignedIn) {
+			console.log("isSignedIn");
 			let id = this.auth.currentUser.get().getId();
 			this.props.startUser(id);
 		} else {
+			console.log("else");
 			this.props.signOut();
 		}
 	};

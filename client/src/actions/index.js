@@ -122,9 +122,6 @@ export const createCategory = (formValues) => async (dispatch, getState) => {
 		formValues
 	);
 
-	console.log("en create category");
-	console.log(response);
-
 	dispatch({ type: CREATE_CATEGORY, payload: response.data });
 
 	history.push(`/categories`);
@@ -142,22 +139,20 @@ export const deleteCategory = (categoryId) => async (dispatch, getState) => {
 	history.pues("/categories");
 };
 
-export const editCategory = (categoryId, formValues) => async (
-	dispatch,
-	getState
-) => {
-	const { google_user_id } = getState().auth;
+export const editCategory =
+	(categoryId, formValues) => async (dispatch, getState) => {
+		const { google_user_id } = getState().auth;
 
-	// TODO: INSPECT FORMVALUES TO SEE IF THE ID OF THE CATEGORY COMES WITH IT
-	const response = await listsServer.patch(
-		`/user/${google_user_id}/category/${categoryId}`,
-		formValues
-	);
+		// TODO: INSPECT FORMVALUES TO SEE IF THE ID OF THE CATEGORY COMES WITH IT
+		const response = await listsServer.patch(
+			`/user/${google_user_id}/category/${categoryId}`,
+			formValues
+		);
 
-	dispatch({ type: EDIT_CATEGORY, payload: response.data });
+		dispatch({ type: EDIT_CATEGORY, payload: response.data });
 
-	history.push(`/category/${categoryId}`);
-};
+		history.push(`/category/${categoryId}`);
+	};
 
 export const selectedCategory = (categoryId) => {
 	return {
@@ -167,8 +162,6 @@ export const selectedCategory = (categoryId) => {
 };
 
 export const addCategories = (categories) => {
-	console.log("en el action addCategories");
-	console.log(categories);
 	return {
 		type: ADD_CATEGORIES,
 		payload: categories,
@@ -180,21 +173,19 @@ export const cleanSelection = () => {
 	};
 };
 
-export const updateCategories = (categories, listId) => async (
-	dispatch,
-	getState
-) => {
-	const { google_user_id } = getState().auth;
+export const updateCategories =
+	(categories, listId) => async (dispatch, getState) => {
+		const { google_user_id } = getState().auth;
 
-	const response = await listsServer.post(
-		`/user/${google_user_id}/list/${listId}/category`,
-		{ categories }
-	);
+		const response = await listsServer.post(
+			`/user/${google_user_id}/list/${listId}/category`,
+			{ categories }
+		);
 
-	dispatch({ type: UPDATE_CATEGORIES, payload: response.data });
+		dispatch({ type: UPDATE_CATEGORIES, payload: response.data });
 
-	history.push(`/list/${listId}`);
-};
+		history.push(`/list/${listId}`);
+	};
 
 export const fetchLists = () => async (dispatch, getState) => {
 	const { google_user_id } = getState().auth;
@@ -274,27 +265,25 @@ export const deleteList = (listId) => async (dispatch, getState) => {
 	history.push("/");
 };
 
-export const addItem = (listId, formValues, formName) => async (
-	dispatch,
-	getState
-) => {
-	const { google_user_id } = getState().auth;
+export const addItem =
+	(listId, formValues, formName) => async (dispatch, getState) => {
+		const { google_user_id } = getState().auth;
 
-	const response = await listsServer.post(
-		`/user/${google_user_id}/list/${listId}/item`,
-		formValues
-	);
+		const response = await listsServer.post(
+			`/user/${google_user_id}/list/${listId}/item`,
+			formValues
+		);
 
-	dispatch({
-		type: ADD_ITEM,
-		payload: { listId: listId, item: response.data },
-	});
+		dispatch({
+			type: ADD_ITEM,
+			payload: { listId: listId, item: response.data },
+		});
 
-	//Reset the form. It's only required in this case.
-	dispatch(reset(formName));
+		//Reset the form. It's only required in this case.
+		dispatch(reset(formName));
 
-	history.push(`/list/${listId}`);
-};
+		history.push(`/list/${listId}`);
+	};
 
 export const deleteItem = (listId, itemId) => async (dispatch, getState) => {
 	const { google_user_id } = getState().auth;
@@ -308,21 +297,19 @@ export const deleteItem = (listId, itemId) => async (dispatch, getState) => {
 	history.push(`/list/${listId}`);
 };
 
-export const editItem = (listId, itemId, formValues) => async (
-	dispatch,
-	getState
-) => {
-	const { google_user_id } = getState().auth;
+export const editItem =
+	(listId, itemId, formValues) => async (dispatch, getState) => {
+		const { google_user_id } = getState().auth;
 
-	const response = await listsServer.patch(
-		`user/${google_user_id}/list/${listId}/item/${itemId}`,
-		formValues
-	);
+		const response = await listsServer.patch(
+			`user/${google_user_id}/list/${listId}/item/${itemId}`,
+			formValues
+		);
 
-	dispatch({
-		type: EDIT_ITEM,
-		payload: { listId: listId, item: response.data },
-	});
+		dispatch({
+			type: EDIT_ITEM,
+			payload: { listId: listId, item: response.data },
+		});
 
-	history.push(`/list/${listId}`);
-};
+		history.push(`/list/${listId}`);
+	};

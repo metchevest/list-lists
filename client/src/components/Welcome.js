@@ -51,8 +51,7 @@ const Welcome = () => {
 			<div className="header"> Future development:</div>
 			<ul className="list">
 				<li>A lot of testing.</li>
-				<li> Add pagination for lists and categories </li>
-				<li> Add pagination for item in mobile version </li>
+				<li> Add pagination for lists and categories.</li>
 				<li>
 					{" "}
 					Improve the pagination of items, like make buttons disabled when they

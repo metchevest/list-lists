@@ -7,7 +7,6 @@ import ItemForm from "./ItemForm";
 class ItemNew extends React.Component {
 	onSubmit = (formValues) => {
 		const formName = `ItemEdit${this.props.listId}`;
-		console.log(formName);
 		this.props.addItem(this.props.listId, formValues, formName);
 	};
 

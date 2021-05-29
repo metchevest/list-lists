@@ -91,8 +91,6 @@ class CategoryPicker extends React.Component {
 	}
 
 	render() {
-		console.log("CategoryPicker.render");
-		console.log(this.props.selectedCategories);
 		if (!this.props.categories) {
 			return <Loading />;
 		}

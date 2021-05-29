@@ -41,8 +41,6 @@ class ListsInCategory extends React.Component {
 	}
 
 	render() {
-		console.log("ListsInCategory.render");
-		console.log(this.props);
 		let listsInCategory = this.getLists();
 
 		if (listsInCategory.length > 0) {

@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { showActiveList, showInactiveList, showAllList } from "../actions";
 
 const FooterRight = (props) => {
-	console.log(props);
 	return (
 		<div className="right__panel_footer">
 			<div className="ui three item menu">

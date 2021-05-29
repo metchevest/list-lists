@@ -23,14 +23,11 @@ class ItemEdit extends React.Component {
 	};
 
 	renderForm() {
-		console.log("en el render form");
-		console.log(this.props);
 		const { itemId } = this.props.match.params;
 		const item = this.props.list.items.filter(
 			(item) => item.id === parseInt(itemId)
 		)[0];
-		console.log("en el render form");
-		console.log(item);
+
 		return (
 			<div>
 				<ItemForm
@@ -47,10 +44,7 @@ class ItemEdit extends React.Component {
 	}
 
 	render() {
-		console.log("en render ItemEdit");
-		console.log(this.props);
 		if (this.props.list !== undefined) {
-			console.log("estoy por el not undefined");
 			return this.renderForm();
 		} else {
 			return <p> Loading... </p>;
@@ -59,8 +53,6 @@ class ItemEdit extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-	console.log("en el map state to props de edit item");
-
 	return {
 		list: state.lists[ownProps.listId],
 	};

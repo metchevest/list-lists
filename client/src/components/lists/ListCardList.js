@@ -14,7 +14,6 @@ class ListCardList extends React.Component {
 	renderListFiltered(lists) {
 		return lists.map((aList, index) => {
 			return (
-				//this.myRef no anda porque estaba puesto afuera del map y this era this.
 				<div className="list__card_item" key={index}>
 					<div className="content">
 						<ListState list={aList} />

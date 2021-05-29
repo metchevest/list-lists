@@ -1,26 +1,20 @@
 import React, { useEffect, useState } from "react";
-// import ItemPagination from "./ItemPagination";
+import { useRouteMatch } from "react-router-dom";
 
 import ItemsPagination from "./ItemsPagination";
 
 const ItemGridList = (props) => {
-	const nextPage = () => {
-		console.log("en nextPage");
-		console.log(props);
+	let { url } = useRouteMatch();
 
+	const nextPage = () => {
 		if (from + 6 < props.items.length && screenWidth < 1170) {
 			setFrom(from + 9);
 		} else if (from + 9 < props.items.length && screenWidth >= 1170) {
 			setFrom(from + 12);
 		}
-		console.log(from);
 	};
 
 	const previousPage = () => {
-		console.log("en previousPage");
-		console.log(props);
-		console.log(from);
-
 		if (from > 9 && screenWidth < 1170) {
 			setFrom(from - 9);
 		}
@@ -31,8 +25,6 @@ const ItemGridList = (props) => {
 	};
 
 	const renderScroll = () => {
-		console.log(props);
-
 		if (screenWidth >= 768) {
 			return (
 				<div className="ui two item menu item__grid_menu">
@@ -65,13 +57,8 @@ const ItemGridList = (props) => {
 					items={props.items}
 					// to={props.listId}
 					listId={props.listId}
+					url={url}
 				/>
-				{/* <ItemPagination
-					itemsperpage={9}
-					nocolumns={3}
-					items={props.items}
-					pagesspan={4}
-				/> */}
 			</div>
 			<>{renderScroll()}</>
 		</>
